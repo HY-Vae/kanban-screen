@@ -23,21 +23,11 @@ export const formatter = (number: any) => {
 };
 
 /** 颜色渲染 */
-export const graphicLinearGradient = (
-  color1: string,
-  color2: string,
-  coordinate: Array<number> = [0, 0, 0, 1]
-) => {
-  return new echarts.graphic.LinearGradient(
-    coordinate[0],
-    coordinate[1],
-    coordinate[2],
-    coordinate[3],
-    [
-      { offset: 0, color: color1 },
-      { offset: 1, color: color2 },
-    ]
-  );
+export const graphicLinearGradient = (color1: string, color2: string, coordinate: Array<number> = [0, 0, 0, 1]) => {
+  return new echarts.graphic.LinearGradient(coordinate[0], coordinate[1], coordinate[2], coordinate[3], [
+    { offset: 0, color: color1 },
+    { offset: 1, color: color2 },
+  ]);
 };
 
 export const resetSelect = (myChart: EChartsType) => {

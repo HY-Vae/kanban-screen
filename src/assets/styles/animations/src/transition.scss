@@ -50,13 +50,14 @@
 }
 
 .horizontal-collapse-transition {
-  transition: var(--kanban-transition-duration, 0.3s) all !important;
+  transition: var(--kanban-duration-normal) all !important;
 }
 
 .slide-left-enter-active,
 .slide-left-leave-active {
-  transition: opacity 0.3s,
-  transform 0.3s;
+  transition:
+    opacity 0.3s,
+    transform 0.3s;
 }
 
 .slide-left-enter-from,
@@ -67,8 +68,9 @@
 
 .slide-right-enter-active,
 .slide-right-leave-active {
-  transition: opacity 0.3s,
-  transform 0.3s;
+  transition:
+    opacity 0.3s,
+    transform 0.3s;
 }
 
 .slide-right-enter-from,

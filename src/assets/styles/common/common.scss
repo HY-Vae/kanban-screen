@@ -1,5 +1,5 @@
-@use "src/element";
-@use "src/digest";
+@use 'src/element';
+@use 'src/digest';
 
 ///* 定义滚动条高宽及背景高宽分别对应横竖滚动条的尺寸 */
 //::-webkit-scrollbar {
@@ -23,13 +23,11 @@
 //}
 
 body {
-  background: var(--background-color);
-  user-select: none;
   overflow: auto;
+  user-select: none;
+  background: var(--kanban-bg-screen);
 
   &::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Opera */
   }
 }
-
-

@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import { useRoute, useRouter } from 'vue-router';
 
+defineOptions({ name: 'LoginHeader' });
+
 const router = useRouter();
 const route = useRoute();
 </script>
@@ -21,10 +23,10 @@ const route = useRoute();
   background-size: cover;
 
   h1 {
+    font-size: 42px;
+    line-height: 100px;
     color: #fff;
     text-align: center;
-    line-height: 100px;
-    font-size: 42px;
   }
 }
 </style>

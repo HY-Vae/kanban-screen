@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import { TimeSelectType } from '@/components/TimeSelect/type';
 
+defineOptions({ name: 'TimeSelect' });
+
 defineProps({
   timeList: Array<TimeSelectType>,
   modelValue: String,
@@ -17,7 +19,7 @@ const handleChange = (e: Event) => {
 </script>
 
 <template>
-  <select class="time-select" :value="modelValue" @change="handleChange">
+  <select :value="modelValue" class="time-select" @change="handleChange">
     <option v-for="(item, index) in timeList" :key="index" :value="item.value">
       {{ item.label }}
     </option>
@@ -30,13 +32,13 @@ const handleChange = (e: Event) => {
   width: 100px;
   height: 26px;
   font-size: 14px;
-  background: rgba(24, 69, 135, 0.55);
   text-align: center;
   cursor: pointer;
+  background: rgb(24 69 135 / 55%);
   transition: all 0.3s;
 
   &:hover {
-    background-color: rgba(14, 95, 255, 0.38);
+    background-color: rgb(14 95 255 / 38%);
   }
 }
 </style>

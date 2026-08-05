@@ -1,0 +1,48 @@
+.error-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 100%;
+  padding: 48px 24px;
+  color: var(--kanban-text-primary);
+  background: var(--kanban-bg-screen);
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    padding: 0;
+  }
+
+  &__illust {
+    width: min(280px, 70vw);
+    height: auto;
+  }
+
+  &__body {
+    margin-top: 32px;
+    text-align: center;
+
+    @media (min-width: 768px) {
+      margin-top: 0;
+      margin-left: 48px;
+      text-align: left;
+    }
+  }
+
+  &__code {
+    margin: 0 0 16px;
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--kanban-text-primary);
+  }
+
+  &__message {
+    margin: 0 0 24px;
+    font-size: 18px;
+    line-height: 1.5;
+    color: var(--kanban-text-secondary);
+  }
+}

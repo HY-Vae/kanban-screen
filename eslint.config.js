@@ -1,20 +1,18 @@
 import js from '@eslint/js';
-import pluginTypeScript from '@typescript-eslint/eslint-plugin';
-import * as parserTypeScript from '@typescript-eslint/parser';
 import configPrettier from 'eslint-config-prettier';
-import { defineFlatConfig } from 'eslint-define-config';
 import pluginPrettier from 'eslint-plugin-prettier';
-import eslintPluginSimpleImportSort from 'eslint-plugin-simple-import-sort';
 import pluginVue from 'eslint-plugin-vue';
+import { defineConfig, globalIgnores } from 'eslint/config';
+import tseslint from 'typescript-eslint';
 import * as parserVue from 'vue-eslint-parser';
 
-export default defineFlatConfig([
+export default defineConfig([
+  globalIgnores(['**/.*', 'dist/*', '*.d.ts', 'public/*', 'src/assets/**', 'src/**/iconfont/**']),
   {
     ...js.configs.recommended,
-    ignores: ['**/.*', 'dist/*', '*.d.ts', 'public/*', 'src/assets/**', 'src/**/iconfont/**'],
     languageOptions: {
       globals: {
-        // index.d.ts
+        // types/index.d.ts
         RefType: 'readonly',
         EmitType: 'readonly',
         TargetContext: 'readonly',
@@ -47,12 +45,10 @@ export default defineFlatConfig([
     },
     plugins: {
       prettier: pluginPrettier,
-      'simple-import-sort': eslintPluginSimpleImportSort,
     },
     rules: {
       ...configPrettier.rules,
       ...pluginPrettier.configs.recommended.rules,
-      'simple-import-sort/imports': 'error',
       'no-debugger': 'off',
       'no-unused-vars': [
         'error',
@@ -69,36 +65,26 @@ export default defineFlatConfig([
       ],
     },
   },
-  {
+  ...tseslint.config({
+    extends: [...tseslint.configs.recommended],
     files: ['**/*.?([cm])ts', '**/*.?([cm])tsx'],
-    languageOptions: {
-      parser: parserTypeScript,
-      parserOptions: {
-        sourceType: 'module',
-      },
-    },
-    plugins: {
-      '@typescript-eslint': pluginTypeScript,
-    },
     rules: {
-      ...pluginTypeScript.configs.strict.rules,
-      '@typescript-eslint/ban-types': 'off',
-      '@typescript-eslint/no-redeclare': 'off',
+      '@typescript-eslint/no-redeclare': 'error',
       '@typescript-eslint/ban-ts-comment': 'off',
       '@typescript-eslint/no-explicit-any': 'off',
       '@typescript-eslint/prefer-as-const': 'warn',
       '@typescript-eslint/no-empty-function': 'off',
       '@typescript-eslint/no-non-null-assertion': 'off',
+      '@typescript-eslint/no-unused-expressions': 'off',
+      '@typescript-eslint/no-unsafe-function-type': 'off',
       '@typescript-eslint/no-import-type-side-effects': 'error',
-      '@typescript-eslint/prefer-literal-enum-member': 'off',
       '@typescript-eslint/explicit-module-boundary-types': 'off',
       '@typescript-eslint/consistent-type-imports': [
         'error',
-        {
-          disallowTypeAnnotations: false,
-          fixStyle: 'inline-type-imports',
-        },
+        { disallowTypeAnnotations: false, fixStyle: 'inline-type-imports' },
       ],
+      '@typescript-eslint/consistent-type-definitions': ['error', 'interface'],
+      '@typescript-eslint/prefer-literal-enum-member': ['error', { allowBitwiseExpressions: true }],
       '@typescript-eslint/no-unused-vars': [
         'error',
         {
@@ -106,13 +92,25 @@ export default defineFlatConfig([
           varsIgnorePattern: '^_',
         },
       ],
+      'no-restricted-imports': [
+        'error',
+        {
+          patterns: [
+            {
+              group: ['@/components/**/src', '@/components/**/src/**'],
+              message: '只允许从组件包根引入（index.ts），禁止 @/components/.../src/... 深路径',
+            },
+          ],
+        },
+      ],
     },
-  },
+  }),
   {
     files: ['**/*.d.ts'],
     rules: {
       'eslint-comments/no-unlimited-disable': 'off',
       'import/no-duplicates': 'off',
+      'no-restricted-syntax': 'off',
       'unused-imports/no-unused-vars': 'off',
     },
   },
@@ -120,7 +118,6 @@ export default defineFlatConfig([
     files: ['**/*.?([cm])js'],
     rules: {
       '@typescript-eslint/no-require-imports': 'off',
-      '@typescript-eslint/no-var-requires': 'off',
     },
   },
   {
@@ -141,25 +138,39 @@ export default defineFlatConfig([
           jsx: true,
         },
         extraFileExtensions: ['.vue'],
-        parser: '@typescript-eslint/parser',
+        parser: tseslint.parser,
         sourceType: 'module',
       },
     },
     plugins: {
+      '@typescript-eslint': tseslint.plugin,
       vue: pluginVue,
     },
     processor: pluginVue.processors['.vue'],
     rules: {
       ...pluginVue.configs.base.rules,
-      ...pluginVue.configs['vue3-essential'].rules,
-      ...pluginVue.configs['vue3-recommended'].rules,
+      ...pluginVue.configs.essential.rules,
+      ...pluginVue.configs.recommended.rules,
       'no-undef': 'off',
       'no-unused-vars': 'off',
       'vue/no-v-html': 'off',
       'vue/require-default-prop': 'off',
       'vue/require-explicit-emits': 'off',
-      'vue/multi-word-component-names': 'off',
+      'vue/multi-word-component-names': 'error',
+      'vue/component-definition-name-casing': ['error', 'PascalCase'],
       'vue/no-setup-props-reactivity-loss': 'off',
+      '@typescript-eslint/consistent-type-definitions': ['error', 'interface'],
+      'no-restricted-imports': [
+        'error',
+        {
+          patterns: [
+            {
+              group: ['@/components/**/src', '@/components/**/src/**'],
+              message: '只允许从组件包根引入（index.ts），禁止 @/components/.../src/... 深路径',
+            },
+          ],
+        },
+      ],
       'vue/html-self-closing': [
         'error',
         {

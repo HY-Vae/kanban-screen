@@ -1,0 +1,16 @@
+/**
+ * 大屏字体阶梯（按 1920 设计稿字号习惯，组件按需取用）。
+ */
+:root {
+  --kanban-font-family:
+    'DIN Alternate', 'Helvetica Neue', helvetica, arial, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --kanban-font-size-xs: 12px;
+  --kanban-font-size-sm: 14px;
+  --kanban-font-size-md: 16px;
+  --kanban-font-size-lg: 18px;
+  --kanban-font-size-xl: 22px;
+  --kanban-font-size-2xl: 28px;
+  --kanban-font-size-3xl: 34px;
+  --kanban-line-height-tight: 1.2;
+  --kanban-line-height-normal: 1.5;
+}

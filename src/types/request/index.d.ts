@@ -1,4 +1,4 @@
-// 基础后端返回内容
+/** @deprecated 请改用 `@/core/http` 的 {@link ApiResult} */
 export interface BaseResult<T> {
   code: number;
   data: T;

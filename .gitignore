@@ -6,7 +6,6 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
-llm-memory
 
 node_modules
 dist
@@ -24,3 +23,4 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+.pnpm-store

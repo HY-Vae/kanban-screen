@@ -21,12 +21,22 @@ export default defineConfig({
   },
   theme: {
     colors: {
-      primary: '#027AFF',
-      'primary-secondary': '#00FFFF',
-      info: '#7CC1FF',
-      'info-secondary': '#707070',
-      warning: '#FFBE44',
-      'warning-secondary': '#FEDB65',
+      // 规范名：text-kanban-brand / bg-kanban-accent …
+      'kanban-brand': 'var(--kanban-color-brand)',
+      'kanban-brand-soft': 'var(--kanban-color-brand-5)',
+      'kanban-accent': 'var(--kanban-color-accent)',
+      'kanban-info': 'var(--kanban-color-info)',
+      'kanban-success': 'var(--kanban-color-success)',
+      'kanban-warning': 'var(--kanban-color-warning)',
+      'kanban-warning-soft': 'var(--kanban-color-warning-soft)',
+      'kanban-muted': 'var(--kanban-text-muted)',
+      // 存量工具类兼容（c-primary-secondary 等），新代码用 kanban-*
+      primary: 'var(--kanban-color-brand)',
+      'primary-secondary': 'var(--kanban-color-accent)',
+      info: 'var(--kanban-color-info)',
+      'info-secondary': 'var(--kanban-text-muted)',
+      warning: 'var(--kanban-color-warning)',
+      'warning-secondary': 'var(--kanban-color-warning-soft)',
     },
     fontSizes: {
       sm: 'font-size-[14px]',

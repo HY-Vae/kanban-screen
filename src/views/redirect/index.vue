@@ -5,6 +5,8 @@
 <script lang="ts" setup>
 import { useRoute, useRouter } from 'vue-router';
 
+defineOptions({ name: 'RouteRedirect' });
+
 const route = useRoute();
 const router = useRouter();
 

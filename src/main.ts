@@ -1,7 +1,6 @@
 import 'animate.css';
 import '@unocss/reset/tailwind-compat.css';
 import 'uno.css';
-import 'virtual:unocss-devtools';
 import './assets/styles/global.scss';
 
 import { createApp } from 'vue';

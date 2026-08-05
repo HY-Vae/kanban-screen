@@ -5,6 +5,8 @@ import { useAppStore } from '@/store/app';
 import { useLoginStore } from '@/store/modules/login';
 import LoginHeader from '@/views/login/components/login-header.vue';
 
+defineOptions({ name: 'LoginPage' });
+
 const appStore = useAppStore();
 const loginStore = useLoginStore();
 const isViewPassword = ref(false);
@@ -49,13 +51,13 @@ onBeforeMount(() => {
               <i
                 v-show="isViewPassword"
                 class="i-heroicons-outline:eye"
-                style="left: unset; right: 18px"
+                style="right: 18px; left: unset"
                 @click="viewPasswordOnClick"
               />
               <i
                 v-show="!isViewPassword"
                 class="i-heroicons-outline:eye-off"
-                style="left: unset; right: 18px"
+                style="right: 18px; left: unset"
                 @click="viewPasswordOnClick"
               />
             </span>
@@ -78,14 +80,15 @@ onBeforeMount(() => {
 <style lang="scss" scoped>
 @keyframes btn-login {
   0% {
-    border: 1px solid #a1c4fd;
     background-image: linear-gradient(to right, #a1c4fd 0%, #c2e9fb 51%, #a1c4fd 100%);
     background-position-x: 12%;
     background-position-y: 6%;
-  }
-  100% {
     border: 1px solid #a1c4fd;
+  }
+
+  100% {
     background-image: linear-gradient(to right, #a1c4fd 100%, #c2e9fb 51%, #a1c4fd 0%);
+    border: 1px solid #a1c4fd;
   }
 }
 
@@ -98,15 +101,15 @@ onBeforeMount(() => {
 
   .layout-content {
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     width: 100%;
     height: calc(100vh - 108px);
 
     &__inner {
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       width: 749px;
       height: 578px;
       background: url('@/views/login/images/bg-login.png') no-repeat center;
@@ -115,10 +118,10 @@ onBeforeMount(() => {
       &-info {
         display: flex;
         justify-content: space-between;
-        margin: 20px 0 0 0;
         width: 100%;
-        color: var(--color-primary-secondary);
+        margin: 20px 0 0;
         font-size: 14px;
+        color: var(--kanban-color-accent);
 
         span {
           transition: all 0.4s;
@@ -131,11 +134,11 @@ onBeforeMount(() => {
 
       &-input-group {
         span {
-          display: block;
           position: relative;
+          display: block;
 
           &:nth-child(2) {
-            margin: 20px 0 0 0;
+            margin: 20px 0 0;
           }
         }
 
@@ -144,15 +147,15 @@ onBeforeMount(() => {
           top: 18px;
           left: 23px;
           font-size: 24px;
-          color: var(--color-primary-secondary);
+          color: var(--kanban-color-accent);
         }
 
         input {
-          padding: 15px 43px 15px 65px;
           width: 305px;
           height: 60px;
+          padding: 15px 43px 15px 65px;
           font-size: 16px;
-          color: var(--color-primary-secondary);
+          color: var(--kanban-color-accent);
           outline: none;
           background: url('@/views/login/images/bg-login-btn.png') no-repeat center;
           background-size: cover;
@@ -176,19 +179,19 @@ onBeforeMount(() => {
       button {
         width: 145px;
         height: 60px;
-        margin: 0;
         padding: 0;
+        margin: 0;
         font-size: 18px;
         color: #beffff;
+        background-image: linear-gradient(to right, #00142d 0%, #006bc5 51%, #00142d 100%);
+        background-size: 200% auto;
         border: 1px solid #00142d;
         border-radius: 9px;
         transition: 0.5s;
-        background-image: linear-gradient(to right, #00142d 0%, #006bc5 51%, #00142d 100%);
-        background-size: 200% auto;
 
         &:hover {
-          border: 1px solid #006bc5;
           background-position: right center;
+          border: 1px solid #006bc5;
         }
       }
     }

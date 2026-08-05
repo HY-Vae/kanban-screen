@@ -9,7 +9,7 @@ const routes: RouteRecordRaw[] | RouteConfigsTable[] = [
     path: '/',
     name: 'layout',
     component: Layout,
-    redirect: 'welcome',
+    redirect: 'portal',
     children: [
       ...home,
       {

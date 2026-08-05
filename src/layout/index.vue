@@ -7,6 +7,8 @@ import LayoutHeaderCommon from '@/layout/layout-header/components/LayoutHeaderCo
 import LayoutHeaderHome from '@/layout/layout-header/components/LayoutHeaderHome.vue';
 import { useAppStore } from '@/store/app';
 
+defineOptions({ name: 'AppLayout' });
+
 const route = useRoute();
 const appStore = useAppStore();
 

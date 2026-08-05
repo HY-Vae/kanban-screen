@@ -7,6 +7,8 @@ import LayoutHeaderNav from '@/layout/layout-header/components/layout-nav/Layout
 import dayjs from '@/plugins/dayjs';
 import { resetRouter } from '@/router';
 
+defineOptions({ name: 'LayoutHeaderCommon' });
+
 const route = useRoute();
 
 const time = ref('');
@@ -55,9 +57,9 @@ header {
 .header-time {
   position: absolute;
   margin: 0 0 0 41px;
-  line-height: 50px;
-  color: var(--color-info);
   font-size: 14px;
+  line-height: 50px;
+  color: var(--kanban-color-info);
 }
 
 .header-title {
@@ -66,28 +68,28 @@ header {
 
   img {
     position: absolute;
-    left: 50%;
     bottom: -14px;
-    transform: translateX(-50%);
+    left: 50%;
+    z-index: 1;
     width: 50px;
     height: 50px;
-    object-fit: cover;
-    z-index: 1;
     cursor: pointer;
+    object-fit: cover;
+    transform: translateX(-50%);
   }
 
   h1 {
-    color: #fff;
     font-size: 34px;
     line-height: 50px;
+    color: #fff;
     cursor: pointer;
   }
 
   h2 {
-    color: var(--color-primary-secondary);
     font-size: 24px;
-    line-height: 24px;
     font-weight: lighter;
+    line-height: 24px;
+    color: var(--kanban-color-accent);
   }
 }
 </style>

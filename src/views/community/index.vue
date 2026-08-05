@@ -1,26 +1,46 @@
 <script lang="ts" setup>
-import CommunityContent from '@/views/community/components/community-content.vue';
-import CommunityLeft from '@/views/community/components/community-left.vue';
-import CommunityRight from '@/views/community/components/community-right.vue';
+import KanbanScreen from '@/components/kanban/KanbanScreen';
+import CommunityAlarmOverview from '@/views/community/components/CommunityAlarmOverview.vue';
+import CommunityDeviceOverview from '@/views/community/components/CommunityDeviceOverview.vue';
+import CommunityParkMetrics from '@/views/community/components/CommunityParkMetrics.vue';
+import CommunityPopulationStage from '@/views/community/components/CommunityPopulationStage.vue';
+import CommunityServiceProjects from '@/views/community/components/CommunityServiceProjects.vue';
+
+defineOptions({ name: 'CommunityScreen' });
 </script>
 
 <template>
-  <div class="community">
-    <community-left />
-    <community-content />
-    <community-right />
-  </div>
+  <!-- 社区屏为满宽三栏，保持壳默认 justify=between -->
+  <KanbanScreen center-width="926px" class="community" left-width="530px" right-width="530px">
+    <template #left>
+      <div class="community__aside">
+        <CommunityDeviceOverview />
+        <CommunityAlarmOverview />
+      </div>
+    </template>
+    <template #center>
+      <CommunityPopulationStage />
+    </template>
+    <template #right>
+      <div class="community__aside">
+        <CommunityParkMetrics />
+        <CommunityServiceProjects />
+      </div>
+    </template>
+  </KanbanScreen>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
+/* 侧栏排列非 scoped，避免子面板宽度吃不到 */
 .community {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 19px 25px;
-  width: 100%;
-  height: 100%;
-
-  @include view-style-default(530px, 926px, #0e5fff33);
+  &__aside {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    justify-content: space-between;
+    width: 530px;
+    height: 100%;
+    color: #fff;
+  }
 }
 </style>

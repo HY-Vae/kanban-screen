@@ -18,7 +18,9 @@
   </router-view>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+defineOptions({ name: 'KanbanApp' });
+</script>
 <style lang="scss">
 #app {
   width: 100%;

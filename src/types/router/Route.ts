@@ -1,7 +1,9 @@
 import type { RouteComponent } from 'vue-router';
 
+import type { HeaderTypeEnum } from '@/enums/HeaderTypeEnum';
+
 /**
- * @description 动画入场和离场
+ * 动画入场和离场（animate.css 类名，不含 animate__animated 前缀）
  */
 interface Transition {
   enter?: string;
@@ -9,28 +11,27 @@ interface Transition {
 }
 
 /**
- * @description 完整子路由的`meta`配置表
+ * 完整子路由的 meta 配置
  */
 interface CustomizeRouteMeta {
   title?: string;
   subtitle?: string;
   transition?: Transition;
   hidden?: boolean;
-  /* 头部类型 */
-  headerType?: any;
+  headerType?: HeaderTypeEnum | 'subtitle' | string;
 }
 
 /**
- * @description 整体路由配置表（包括完整子路由）
+ * 整体路由配置表（包括完整子路由）
  */
 export interface RouteConfigsTable {
-  /** 路由地址 `必填` */
+  /** 路由地址 */
   path: string;
-  /** 路由名字（保持唯一）`可选` */
+  /** 路由名字（保持唯一） */
   name?: string;
-  /** `Layout`组件 `可选` */
+  /** Layout 组件 */
   component?: RouteComponent;
-  /** 路由重定向 `可选` */
+  /** 路由重定向 */
   redirect?: string;
   meta?: CustomizeRouteMeta;
   /** 子路由配置项 */

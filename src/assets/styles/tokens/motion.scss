@@ -1,0 +1,10 @@
+/**
+ * 过渡时长与缓动；路由动画等统一引用此处。
+ */
+:root {
+  --kanban-duration-fast: 0.2s;
+  --kanban-duration-normal: 0.3s;
+  --kanban-duration-slow: 0.45s;
+  --kanban-easing-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --kanban-easing-emphasized: cubic-bezier(0.2, 0, 0, 1);
+}

@@ -3,18 +3,18 @@ import type { RouteConfigsTable } from '@/types/router/Route';
 
 const routes: RouteConfigsTable[] = [
   {
-    path: '/welcome',
-    name: 'Welcome',
-    component: () => import('@/views/welcome/index.vue'),
+    path: '/portal',
+    name: 'Portal',
+    component: () => import('@/views/portal/index.vue'),
     meta: {
-      title: '后台管理系统标题',
+      title: '看板Demo标题',
       headerType: HeaderTypeEnum.default,
     },
   },
   {
-    path: '/smart-park',
-    name: 'SmartPark',
-    component: () => import('@/views/smart-park/index.vue'),
+    path: '/parking',
+    name: 'Parking',
+    component: () => import('@/views/parking/index.vue'),
     meta: {
       title: '智慧智能监管中心',
       subtitle: '车辆监控中心',
@@ -26,16 +26,16 @@ const routes: RouteConfigsTable[] = [
     },
   },
   {
-    path: '/data-analyse',
-    name: 'DataAnalyse',
-    component: () => import('@/views/data-analyse/index.vue'),
+    path: '/analyse',
+    name: 'Analyse',
+    component: () => import('@/views/analyse/index.vue'),
     meta: {
       title: '数据分析',
       subtitle: '数据分析中心',
       headerType: HeaderTypeEnum.subtitle,
       transition: {
-        enter: 'animate__bounceIn animate__faster',
-        leave: 'animate__bounceOut',
+        enter: 'animate__fadeInLeft animate__faster',
+        leave: 'animate__fadeOutLeft animate__faster',
       },
     },
   },
@@ -54,9 +54,9 @@ const routes: RouteConfigsTable[] = [
     },
   },
   {
-    path: '/business-supervision',
-    name: 'BusinessSupervision',
-    component: () => import('@/views/business-supervision/index.vue'),
+    path: '/business',
+    name: 'Business',
+    component: () => import('@/views/business/index.vue'),
     meta: {
       title: '智慧经营监管中心',
       subtitle: '园区经营可视化',
@@ -64,9 +64,9 @@ const routes: RouteConfigsTable[] = [
     },
   },
   {
-    path: '/big-data',
-    name: 'BigData',
-    component: () => import('@/views/big-data/index.vue'),
+    path: '/insight',
+    name: 'Insight',
+    component: () => import('@/views/insight/index.vue'),
     meta: {
       title: '大数据可视化中心',
       subtitle: '大数据可视化',

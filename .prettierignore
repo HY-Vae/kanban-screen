@@ -5,7 +5,4 @@ public
 .vscode
 .idea
 *.sh
-*.md
-
-src/assets
-stats.html
+report.html

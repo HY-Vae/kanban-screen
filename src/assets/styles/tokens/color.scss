@@ -1,0 +1,47 @@
+/**
+ * 大屏色板：色阶 + 语义别名 + 背景 / 文字 / 边框。
+ * 锚点来自既有设计稿；6 为 brand 基准。无亮色模式，不写 html.dark。
+ */
+:root {
+  /* —— Brand 色阶（6 = 基准） —— */
+  --kanban-color-brand-6: #027aff;
+  --kanban-color-brand-1: color-mix(in srgb, var(--kanban-color-brand-6) 10%, white);
+  --kanban-color-brand-2: color-mix(in srgb, var(--kanban-color-brand-6) 25%, white);
+  --kanban-color-brand-3: color-mix(in srgb, var(--kanban-color-brand-6) 40%, white);
+  --kanban-color-brand-4: #32c5ff;
+  --kanban-color-brand-5: #4f94e6;
+  --kanban-color-brand-7: #1c8adf;
+  --kanban-color-brand-8: color-mix(in srgb, var(--kanban-color-brand-6) 25%, black);
+  --kanban-color-brand-9: color-mix(in srgb, var(--kanban-color-brand-6) 40%, black);
+  --kanban-color-brand-10: color-mix(in srgb, var(--kanban-color-brand-6) 55%, black);
+  --kanban-color-brand: var(--kanban-color-brand-6);
+  --kanban-color-brand-hover: var(--kanban-color-brand-7);
+
+  /* —— Accent（科技感青） —— */
+  --kanban-color-accent: #0ff;
+
+  /* 设计稿定点色（含 alpha），勿改成随意 color-mix */
+  --kanban-color-accent-muted: #00ffffb5;
+
+  /* —— 功能色 —— */
+  --kanban-color-success: #44d7b6;
+  --kanban-color-info: #7cc1ff;
+  --kanban-color-info-soft: #adcbff;
+  --kanban-color-warning: #ffbe44;
+  --kanban-color-warning-soft: #fedb65;
+  --kanban-color-danger: #ff5f5f;
+
+  /* —— 背景 —— */
+  --kanban-bg-screen: #051135;
+  --kanban-bg-panel: color-mix(in srgb, var(--kanban-color-brand-6) 20%, transparent);
+  --kanban-bg-panel-hover: color-mix(in srgb, var(--kanban-color-brand-6) 28%, transparent);
+
+  /* —— 文字 —— */
+  --kanban-text-primary: #fff;
+  --kanban-text-secondary: color-mix(in srgb, white 75%, transparent);
+  --kanban-text-muted: #707070;
+
+  /* —— 边框 / 光效 —— */
+  --kanban-border: color-mix(in srgb, var(--kanban-color-accent) 35%, transparent);
+  --kanban-glow: color-mix(in srgb, var(--kanban-color-accent) 45%, transparent);
+}

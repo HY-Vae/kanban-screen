@@ -1,51 +1,81 @@
-module.exports = {
-  // 继承推荐规范配置
-  extends: [
-    'stylelint-config-standard',
-    'stylelint-config-recommended-scss',
-    'stylelint-config-recommended-vue/scss',
-    'stylelint-config-html/vue',
-    'stylelint-config-recess-order',
-  ],
-  // 指定不同文件对应的解析器
+// @ts-check
+
+/** @type {import("stylelint").Config} */
+export default {
+  extends: ['stylelint-config-standard', 'stylelint-config-html/vue', 'stylelint-config-recess-order'],
+  plugins: ['stylelint-scss', 'stylelint-order', 'stylelint-prettier'],
   overrides: [
     {
-      files: ['**/*.{vue,html}'],
+      files: ['**/*.(css|html|vue)'],
       customSyntax: 'postcss-html',
     },
     {
-      files: ['**/*.{scss,css}'],
+      files: ['*.scss', '**/*.scss'],
       customSyntax: 'postcss-scss',
+      extends: ['stylelint-config-standard-scss', 'stylelint-config-recommended-vue/scss'],
     },
   ],
-  // 自定义规则
   rules: {
-    'import-notation': 'string', // 指定导入CSS文件的方式("string"|"url")
-    'selector-class-pattern': null, // 选择器类名命名规则
-    'custom-property-pattern': null, // 自定义属性命名规则
-    'keyframes-name-pattern': null, // 动画帧节点样式命名规则
-    'no-descending-specificity': null, // 允许无降序特异性
-    'no-empty-source': null, // 允许空样式
-    // 允许 global 、export 、deep伪类
+    'prettier/prettier': true,
+    'selector-class-pattern': null,
+    'no-descending-specificity': null,
+    // Vue/HTML inline style 被 postcss-html 解析后无选择器包裹，误报
+    'no-invalid-position-declaration': null,
+    'scss/dollar-variable-pattern': null,
     'selector-pseudo-class-no-unknown': [
       true,
       {
-        ignorePseudoClasses: ['global', 'export', 'deep'],
+        ignorePseudoClasses: ['deep', 'global'],
       },
     ],
-    // 允许未知属性
-    'property-no-unknown': [
+    'selector-pseudo-element-no-unknown': [
       true,
       {
-        ignoreProperties: [],
+        ignorePseudoElements: ['v-deep', 'v-global', 'v-slotted'],
       },
     ],
-    // 允许未知规则
     'at-rule-no-unknown': [
       true,
       {
-        ignoreAtRules: ['apply', 'use', 'forward'],
+        ignoreAtRules: [
+          // UnoCSS / Sass（本仓不用 Tailwind，保留 apply 供原子类写法）
+          'apply',
+          'screen',
+          'function',
+          'if',
+          'each',
+          'include',
+          'mixin',
+          'use',
+          'forward',
+        ],
       },
     ],
+    'rule-empty-line-before': [
+      'always',
+      {
+        ignore: ['after-comment', 'first-nested'],
+      },
+    ],
+    'unit-no-unknown': [true, { ignoreUnits: ['rpx'] }],
+    'order/order': [
+      [
+        'dollar-variables',
+        'custom-properties',
+        'at-rules',
+        'declarations',
+        {
+          type: 'at-rule',
+          name: 'supports',
+        },
+        {
+          type: 'at-rule',
+          name: 'media',
+        },
+        'rules',
+      ],
+      { severity: 'warning' },
+    ],
   },
+  ignoreFiles: ['**/*.js', '**/*.ts', '**/*.jsx', '**/*.tsx', 'report.html'],
 };

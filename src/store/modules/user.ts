@@ -1,21 +1,26 @@
 import { defineStore } from 'pinia';
 
-import { user } from '@/api/test';
+import type { AuthUserProfile } from '@/api/auth';
 
-/** 用户信息 */
+/**
+ * 登录用户资料（请求放 api/auth，登录流程完成后再写入）
+ */
 export const useUserStore = defineStore('userStore', {
-  state() {
-    return {
-      userinfo: {},
-    };
-  },
+  state: () => ({
+    userinfo: null as AuthUserProfile | null,
+  }),
   getters: {},
   actions: {
-    async getUserInfo() {
-      const response = await user();
-      if (response.code == 200) {
-        this.userinfo = response.data;
-      }
+    /**
+     * 写入用户资料
+     * @param profile 用户基本信息
+     */
+    setUserInfo(profile: AuthUserProfile) {
+      this.userinfo = profile;
+    },
+    /** 清空用户资料 */
+    clearUserInfo() {
+      this.userinfo = null;
     },
   },
 });
