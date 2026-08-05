@@ -5,7 +5,8 @@ WORKDIR /app
 RUN npm config set registry https://registry.npmmirror.com \
  && npm install -g pnpm@11.9.0
 
-COPY .npmrc package.json pnpm-lock.yaml ./
+# pnpm-workspace.yaml 含 packageExtensions，frozen install 前必须拷入，否则 checksum 不匹配
+COPY .npmrc package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 RUN pnpm config set registry https://registry.npmmirror.com \
  && pnpm install --frozen-lockfile
 
