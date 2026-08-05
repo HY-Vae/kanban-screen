@@ -7,7 +7,7 @@ import remaining from '@/router/modules/remaining';
 // 静态路由
 const routes: RouteRecordRaw[] = [...remaining, ...error] as RouteRecordRaw[];
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHashHistory(import.meta.env.BASE_URL),
   routes,
   scrollBehavior: () => ({ left: 0, top: 0, behavior: 'smooth' }),
 });

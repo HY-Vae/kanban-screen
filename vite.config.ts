@@ -60,7 +60,7 @@ export default ({ mode }: ConfigEnv): UserConfigExport => {
     clearScreen: false,
     build: {
       target: 'es2015',
-      outDir: 'docker/dist',
+      outDir: 'dist',
       sourcemap: false,
       reportCompressedSize: false,
       chunkSizeWarningLimit: 4000,

@@ -7,20 +7,49 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Dependencies
 node_modules
+.pnpm-store
+
+# Build output
 dist
-fakeServer
 dist-ssr
+fakeServer
+report.html
+
+# Local env overrides
+.env.local
+.env.*.local
 *.local
+
+# Tool caches
+.eslintcache
+.vite
+*.tsbuildinfo
+.stylelintcache
+.prettiercache
+
+# Build analysis
+report.html
+stats.html
+
+# Test coverage
+coverage
+*.lcov
+
+# Other package managers (keep pnpm-lock.yaml)
+package-lock.json
+yarn.lock
 
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
 .idea
 .DS_Store
+Thumbs.db
+Desktop.ini
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
-.pnpm-store
