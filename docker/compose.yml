@@ -3,7 +3,6 @@ name: kanban-screen
 # 运行时定义（无 build）。服务器只需本文件即可拉镜像启动。
 #
 #   export KANBAN_IMAGE_PREFIX=registry.cn-hangzhou.aliyuncs.com/bunny-company
-#   export KANBAN_IMAGE_TAG=prod-latest
 #   docker compose pull && docker compose up -d --no-build
 #
 # 本地构建使用同目录 compose.override.yml（docker compose up --build）。

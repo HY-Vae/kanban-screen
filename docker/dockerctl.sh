@@ -24,9 +24,8 @@ show_help() {
   logs / ps / config
 
 示例:
-  ./dockerctl.sh build-up
-  export KANBAN_IMAGE_PREFIX=registry.cn-hangzhou.aliyuncs.com/bunny-company
-  export KANBAN_IMAGE_TAG=prod-latest
+  # 从 ACR 拉取（tag 默认 local，与 CI 推送一致）
+  export KANBAN_IMAGE_PREFIX=registry.cn-hangzhou.aliyuncs.com/<namespace>
   ./dockerctl.sh up
 EOF
 }
@@ -52,42 +51,42 @@ ACTION="$1"
 shift
 
 case "${ACTION}" in
-  pull)
-    dc pull "$@"
-    ;;
-  build)
-    dc_build build "$@"
-    ;;
-  up)
-    dc up -d --pull missing --no-build "$@"
-    ;;
-  build-up)
-    dc_build build "$@"
-    dc_build up -d --build "$@"
-    ;;
-  down)
-    dc down "$@"
-    ;;
-  restart)
-    dc down "$@"
-    dc up -d --pull missing --no-build "$@"
-    ;;
-  logs)
-    dc logs -f "$@"
-    ;;
-  ps)
-    dc ps "$@"
-    ;;
-  config)
-    if [[ -f "${COMPOSE_OVERRIDE}" ]]; then
-      dc_build config "$@"
-    else
-      dc config "$@"
-    fi
-    ;;
-  *)
-    echo "错误: 不支持的动作 '${ACTION}'"
-    show_help
-    exit 1
-    ;;
+pull)
+  dc pull "$@"
+  ;;
+build)
+  dc_build build "$@"
+  ;;
+up)
+  dc up -d --pull missing --no-build "$@"
+  ;;
+build-up)
+  dc_build build "$@"
+  dc_build up -d --build "$@"
+  ;;
+down)
+  dc down "$@"
+  ;;
+restart)
+  dc down "$@"
+  dc up -d --pull missing --no-build "$@"
+  ;;
+logs)
+  dc logs -f "$@"
+  ;;
+ps)
+  dc ps "$@"
+  ;;
+config)
+  if [[ -f "${COMPOSE_OVERRIDE}" ]]; then
+    dc_build config "$@"
+  else
+    dc config "$@"
+  fi
+  ;;
+*)
+  echo "错误: 不支持的动作 '${ACTION}'"
+  show_help
+  exit 1
+  ;;
 esac

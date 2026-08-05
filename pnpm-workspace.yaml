@@ -16,8 +16,3 @@ allowedDeprecatedVersions:
 peerDependencyRules:
   allowedVersions:
     eslint: '9'
-
-packageExtensions:
-  'rollup@*':
-    optionalDependencies:
-      fsevents: '*'
