@@ -1,0 +1,30 @@
+---
+description: 路由仅静态声明；禁止动态 / 后端下发路由
+globs: src/router/**/*
+alwaysApply: false
+---
+
+# 路由规范
+
+大屏屏数固定、低频扩展，路由走**常规静态声明**即可。
+
+## 硬规则
+
+- 所有业务屏、登录、错误页在 `src/router/modules/*.ts` **写死** `path` / `name` / `component` / `meta`。
+- **禁止**动态路由：后端菜单下发、`addRoute` 按权限注入业务屏、文件系统自动扫路由当唯一来源等。
+- 新增大屏：先定域名（见 `project.mdc`）→ 加 `views/{域}/` → 在对应 module 里加一条静态路由。
+
+## meta（常用）
+
+| 字段 | 用途 |
+| ---- | ------ |
+| `title` / `subtitle` | Header 文案 |
+| `headerType` | Header 样式枚举 |
+| `transition` | 仅 `fade` \| `none`（见 `route-transition.mdc`） |
+| `requiresAuth` | 可选；演示登录守卫 |
+
+## 禁止
+
+- 按角色动态拼大屏路由表。
+- 在 `meta` 塞任意 animate.css class 字符串。
+- 为「以后可能很多屏」上路由生成器；屏少就手写。

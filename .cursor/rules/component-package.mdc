@@ -1,0 +1,37 @@
+---
+description: 大屏组件包：kanban 壳与 ui 分区
+globs: src/components/**/*
+alwaysApply: false
+---
+
+# 组件包规范
+
+## 分区
+
+```text
+src/components/
+  kanban/          # 大屏壳：Screen / Column / Panel / Stat / Title
+  ui/              # 跨屏无域语义：时钟、数字翻牌、图标装饰等
+```
+
+- `kanban/` 与 `ui/` **禁止**调业务 API、禁止域名组件（如 `Parking*`）。
+- 业务面板放 `src/views/{域}/components/`，不要塞进 `components/`。
+
+## 骨架（需要独立成包时）
+
+```text
+KanbanPanel/
+├── index.ts              # 唯一对外出口
+└── src/
+    ├── KanbanPanel.vue
+    ├── types.ts          # 有对外类型才建
+    └── constants.ts
+```
+
+- 文件夹名 = 组件名 = default export。
+- 外部只从包根引入：`import KanbanPanel from '@/components/kanban/KanbanPanel'`。
+- 禁止深路径打到 `src/hooks/...`。
+
+## 简单组件
+
+单文件足够时可用 `KanbanPanel.vue` 直放分区目录；一旦出现 types + 多文件，再升为文件夹包。

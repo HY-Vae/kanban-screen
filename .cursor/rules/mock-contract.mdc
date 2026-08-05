@@ -1,0 +1,50 @@
+---
+description: Mock 契约：与 api VO 同形，统一信封
+globs: mock/**/*
+alwaysApply: false
+---
+
+# Mock 契约规范
+
+演示数据必须可替换为真实后端：先定 VO，再写 mock。
+
+## 硬规则
+
+- 使用 `vite-plugin-fake-server` 的 `defineFakeRoute`。
+- 响应信封：`{ code: 200, message, data }`（成功码与 `api-http.mdc` 一致，锁死 `200`）。
+- Mock 的 `data` 形状必须与 `src/api/{域}` 中的 TypeScript 类型一致。
+- 按域拆文件：`mock/parking.ts`、`mock/community.ts`…；path 与 `src/api` 对齐（`/{域}/{resource}`）。
+
+## 推荐公共形状（放 `src/api/common/`）
+
+```ts
+interface MetricCard {
+  key: string;
+  label: string;
+  value: number;
+  unit?: string;
+  trend?: number;
+}
+
+interface ChartPoint {
+  label: string;
+  value: number;
+}
+
+interface ChartSeries {
+  name: string;
+  points: ChartPoint[];
+}
+
+interface NamedValue {
+  name: string;
+  value: number;
+  ratio?: number;
+}
+```
+
+## 数据质量
+
+- 字段用英文语义名（`value` / `label` / `ratio`）；禁止仅作者懂的键名。
+- 演示关键 KPI 用固定值或固定区间；次要数字可 `random`，避免整屏狂跳。
+- 列表给稳定 `id` / `key`，方便 `v-for`。

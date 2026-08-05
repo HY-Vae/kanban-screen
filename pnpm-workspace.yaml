@@ -1,0 +1,23 @@
+# pnpm v11+ project settings (replaces package.json#pnpm and onlyBuiltDependencies)
+# See: https://pnpm.io/migration
+
+allowBuilds:
+  '@parcel/watcher': true
+  esbuild: true
+  vue-demi: true
+
+allowedDeprecatedVersions:
+  sourcemap-codec: '*'
+  domexception: '*'
+  w3c-hr-time: '*'
+  stable: '*'
+  abab: '*'
+
+peerDependencyRules:
+  allowedVersions:
+    eslint: '9'
+
+packageExtensions:
+  'rollup@*':
+    optionalDependencies:
+      fsevents: '*'

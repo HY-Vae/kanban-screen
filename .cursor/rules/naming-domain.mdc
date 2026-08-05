@@ -1,0 +1,50 @@
+---
+description: 业务域命名：目录/组件/API 禁格子方位词
+globs: src/views/**/*,src/api/**/*,mock/**/*
+alwaysApply: false
+---
+
+# 业务域命名规范
+
+## 原则
+
+用**业务语义**命名，不用布局方位。方位只出现在壳组件的 slot / props（`#left` / `#center` / `#right`）。
+
+## 域目录与路由
+
+| 旧目录（重构后删除） | 目标域 | 路径示例 |
+| ---- | ------ | ------ |
+| smart-park | parking | `views/parking/`、`/parking` |
+| community | community | `views/community/`、`/community` |
+| data-analyse | analyse | `views/analyse/`、`/analyse` |
+| business-supervision | business | `views/business/`、`/business` |
+| big-data | insight | `views/insight/`、`/insight` |
+| welcome | portal | `views/portal/`、`/portal` |
+
+路由在 `src/router/modules/` **静态声明**，见 `router.mdc`。
+
+## 组件 / 文件
+
+```text
+# ✅
+ParkingDeviceOverview.vue
+ParkingAlarmTrend.vue
+parkingOccupancyOption.ts
+useParkingOverview.ts
+
+# ❌
+smart-park-left.vue
+sidebar-left-top.vue
+right-middle.vue
+conten-body-chart.tsx
+```
+
+- Vue：`{Domain}{Capability}.vue`（PascalCase）。
+- 图表 option：`{capability}Option.ts`（camelCase 导出工厂函数）。
+- composable：`use{Domain}{Capability}.ts`。
+- 面板内部结构可用 `Title` / `Body` / `Header` / `Footer`；禁止 `left` / `right` / `sidebar`。
+
+## API / Mock
+
+- `src/api/{域}/` 与 `mock/{域}.ts`（或 `mock/{域}/*.ts`）同名对齐。
+- path：`/{域}/{resource}`；完整 URL = `baseURL` + path（见 `api-http.mdc`）。

@@ -1,0 +1,70 @@
+---
+description: 大屏样式 token：--kanban-* 分层、BEM、禁止散装色
+globs: src/**/*.{scss,css,vue},src/assets/styles/**/*
+alwaysApply: false
+---
+
+# 样式 Token 规范
+
+大屏以**固定暗色设计稿**为主；token 只服务本仓库。分层写法可参考常见控制台 token（色阶 + 语义别名 + `color-mix`），但前缀、色值、是否亮暗双轨均按大屏自己定——**不要**引入 `--auth-*`、Element 映射、亮暗 `html.dark` 双写。
+
+## 前缀
+
+- 全局设计变量必须 `--kanban-` 前缀。
+- 禁止新增裸 `--color-*` / `--background-*`；重构时直接改成 `--kanban-*`。
+
+## 目录
+
+```text
+src/assets/styles/tokens/
+  color.scss        # 色阶 + 语义色 + 背景 / 文字 / 边框
+  typography.scss
+  spacing.scss
+  motion.scss       # duration / easing
+  index.scss        # @use 聚合；不含组件选择器
+```
+
+## 分层约定
+
+| 层级 | 示例 | 用途 |
+| ------ | ------ | ------ |
+| 色阶 | `--kanban-color-brand-6` | 主色基准；可用 `color-mix` 派生 1–10 |
+| 语义别名 | `--kanban-color-brand` → brand-6 | 组件消费用短名 |
+| 功能色 | `--kanban-color-success` / `warning` / `danger` / `info` | 状态、图表系列 |
+| 背景 | `--kanban-bg-screen` / `panel` / `panel-hover` | 整屏底、面板 |
+| 文字 | `--kanban-text-primary` / `secondary` / `muted` | 标题 / 正文 / 辅助 |
+| 边框 / 光效 | `--kanban-border` / `glow` | 描边、科技感 |
+| 动效 | `--kanban-duration-fast` / `normal` | 过渡 |
+| 间距 | `--kanban-space-*` | 面板内边距、列间距 |
+
+## 初值锚点（来自现设计，落地 PR2 时收编）
+
+| 语义 | 现有色值（参考） |
+| ---- | ------ |
+| brand / primary | `#027AFF` |
+| brand 亮 | `#4F94E6`、`#32C5FF` |
+| accent / cyan | `#00FFFF` |
+| success | `#44D7B6` |
+| info | `#7CC1FF` |
+| warning | `#FFBE44` |
+| screen 底 | `#051135` |
+
+色阶数字约定：`6` 为基准主色；浅阶可 `color-mix(...%, white)`，深阶 mix black。大屏无亮色模式时，不必写 `html.dark` 覆盖块。
+
+## 业务代码
+
+- 颜色 / 关键要间距用 `var(--kanban-*)`；UnoCSS 桥接时用约定的 `kanban-*` 工具类。
+- **禁止**在组件里新增散装 `#hex`（装饰图 URL 除外；色值仍进 token）。
+- 主题色只写在 token 文件；**不做**运行时换肤页。
+
+## BEM（类名，不是变量名）
+
+```scss
+.kanban-panel { }
+.kanban-panel__title { }
+.kanban-panel__body { }
+.kanban-panel--accent { }
+```
+
+- Block：壳用 `kanban-*`，业务面板用域前缀（`.parking-occupancy`）。
+- 禁止用格子方位当 block 名：`.sidebar-left-top`。

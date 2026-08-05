@@ -1,0 +1,41 @@
+---
+description: Git Commit Message：中文 + emoji 类型（大屏）
+globs: "**/*"
+alwaysApply: false
+---
+
+# Git 提交规范
+
+生成 Commit Message 时用中文，精简准确。
+
+## 格式
+
+`<emoji> <类型>(<范围>): <简短描述>`
+
+- **类型**：`feat` / `fix` / `docs` / `style` / `refactor` / `perf` / `test` / `build` / `ci` / `chore`
+- **范围**：可选，如 `parking`、`kanban`、`http`、`mock`、`rules`
+
+## 常用对照
+
+| emoji | 类型场景 |
+| ------- | ------ |
+| `:tada:` | 初次提交 |
+| `:sparkles:` | 新功能 |
+| `:recycle:` / `:hammer:` | 重构 |
+| `:bug:` | 修 bug |
+| `:lipstick:` | UI / 样式 |
+| `:zap:` | 性能 |
+| `:memo:` | 文档 / 规范 |
+| `:fire:` | 删代码 |
+| `:wrench:` | 配置 |
+| `:heavy_plus_sign:` / `:heavy_minus_sign:` | 增/减依赖 |
+
+## 示例
+
+```text
+:memo: docs(rules): 落地大屏 Cursor 规范
+:lipstick: style(tokens): 统一 --kanban 色板前缀
+:recycle: refactor(kanban): 抽出 KanbanScreen 三栏壳
+:sparkles: feat(parking): 新增车位占用率面板
+:bug: fix(http): 统一响应信封 message 字段
+```
