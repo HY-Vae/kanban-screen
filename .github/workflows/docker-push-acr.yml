@@ -1,25 +1,20 @@
-# 看板前端镜像推送到阿里云 ACR（GitFlow）
+# 看板前端镜像推送到阿里云 ACR
 # Secrets：ACR_REGISTRY / ACR_NAMESPACE / ACR_USERNAME / ACR_PASSWORD
 #
-# 分支 → 镜像前缀：
-#   develop      → dev
-#   release/*    → rc
-#   main / v*    → prod
-#   手动触发     → 自选 env
+# 仅 main push 自动构建；手动触发可选镜像前缀
 
 name: Build and push kanban-screen to ACR
 
 on:
   push:
-    branches: [develop, main, "release/**"]
-    tags: ["v*"]
+    branches: [main]
   workflow_dispatch:
     inputs:
       env:
         description: Image tag prefix
         type: choice
         options: [dev, rc, prod]
-        default: dev
+        default: prod
 
 env:
   IMAGE_NAME: kanban-screen
@@ -36,14 +31,8 @@ jobs:
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             PREFIX="${{ inputs.env }}"
-          elif [[ "${{ github.ref }}" == refs/tags/v* ]]; then
-            PREFIX=prod
-          elif [ "${{ github.ref }}" = "refs/heads/main" ]; then
-            PREFIX=prod
-          elif [[ "${{ github.ref }}" == refs/heads/release/* ]]; then
-            PREFIX=rc
           else
-            PREFIX=dev
+            PREFIX=prod
           fi
           echo "prefix=$PREFIX" >> "$GITHUB_OUTPUT"
 
@@ -64,9 +53,6 @@ jobs:
             echo "tags<<EOF"
             echo "${IMAGE}:${PREFIX}-${SHA_SHORT}"
             echo "${IMAGE}:${PREFIX}-latest"
-            if [[ "${{ github.ref }}" == refs/tags/v* ]]; then
-              echo "${IMAGE}:${GITHUB_REF_NAME}"
-            fi
             echo "EOF"
           } >> "$GITHUB_OUTPUT"
 
