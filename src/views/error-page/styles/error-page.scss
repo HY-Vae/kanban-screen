@@ -1,16 +1,16 @@
 .error-page {
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  box-sizing: border-box;
   width: 100%;
   min-height: 100%;
   padding: 48px 24px;
   color: var(--kanban-text-primary);
   background: var(--kanban-bg-screen);
 
-  @media (min-width: 768px) {
+  @media (width >= 768px) {
     flex-direction: row;
     padding: 0;
   }
@@ -24,7 +24,7 @@
     margin-top: 32px;
     text-align: center;
 
-    @media (min-width: 768px) {
+    @media (width >= 768px) {
       margin-top: 0;
       margin-left: 48px;
       text-align: left;

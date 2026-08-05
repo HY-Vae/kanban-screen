@@ -21,10 +21,10 @@ defineProps<{
 
 <style lang="scss" scoped>
 .parking-tollgate-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  position: relative;
 
   &__count {
     font-size: 34px;

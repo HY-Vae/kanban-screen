@@ -49,10 +49,10 @@ const describe = computed(() => {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      margin: 14px 0 0 0;
-      padding: 0 0 0 14px;
       width: 243px;
       height: 124px;
+      padding: 0 0 0 14px;
+      margin: 14px 0 0;
       background: url('@/views/business/images/sidebar/bg-sidebar-panel.png') no-repeat center;
       background-size: cover;
 

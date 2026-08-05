@@ -85,13 +85,13 @@ const { list } = useInsightParkAreas();
 
 @keyframes insight-zoom-pulse {
   from {
-    transform: scale(0.7);
     opacity: 0.5;
+    transform: scale(0.7);
   }
 
   to {
-    transform: scale(1);
     opacity: 1;
+    transform: scale(1);
   }
 }
 </style>

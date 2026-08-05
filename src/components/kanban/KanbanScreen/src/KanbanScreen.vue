@@ -76,12 +76,12 @@ watch(
 
 <style lang="scss" scoped>
 .kanban-screen {
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   width: 100%;
   height: 100%;
   min-height: 0;
-  box-sizing: border-box;
 
   &__columns {
     display: flex;

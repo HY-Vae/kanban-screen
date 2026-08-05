@@ -34,7 +34,7 @@ function goHome() {
   gap: 12px;
   justify-content: center;
 
-  @media (min-width: 768px) {
+  @media (width >= 768px) {
     justify-content: flex-start;
   }
 

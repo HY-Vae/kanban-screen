@@ -71,8 +71,8 @@ const toneClass = computed(() =>
 
   &__label {
     font-size: 15px;
-    text-align: center;
     color: var(--kanban-color-info);
+    text-align: center;
   }
 }
 </style>

@@ -16,7 +16,7 @@ export const copy = (text: string) => {
     } else {
       (window as any).$message.success('复制失败！');
     }
-  } catch (err: any) {
+  } catch {
     (window as any).$message.success('复制失败！请手动复制');
   } finally {
     document.body.removeChild(textarea);

@@ -17,9 +17,9 @@ defineProps<{
 
 <style lang="scss" scoped>
 .community-panel {
-  margin: 0 auto;
   width: 430px;
   height: 440px;
+  margin: 0 auto;
   background: url('../images/bg-common-panel.png') no-repeat center;
   background-size: cover;
 
