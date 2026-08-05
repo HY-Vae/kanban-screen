@@ -22,7 +22,7 @@ const onSubmit = () => {
 };
 
 onBeforeMount(() => {
-  appStore.setBackground('/images/common/bg/bg-layout.png');
+  appStore.setBackground('/images/bg/bg-layout.png');
 });
 </script>
 

@@ -34,6 +34,8 @@ export function getPluginsList(
           include: 'mock',
           infixName: false,
           enableDev: true,
+          // Docker/nginx 静态部署无后端时，浏览器拦截 /mock（演示数据）
+          enableProd: true,
         })
       : null,
     VITE_CDN ? cdn : null,
