@@ -2,14 +2,15 @@ name: kanban-screen
 
 # 运行时定义（无 build）。服务器只需本文件即可拉镜像启动。
 #
-#   export KANBAN_IMAGE_PREFIX=registry.cn-hangzhou.aliyuncs.com/bunny-company
+#   export IMAGE_PREFIX=registry.cn-hangzhou.aliyuncs.com/bunny-company
+#   export IMAGE_TAG=prod-latest   # 本仓库 CI 默认也可为 local
 #   docker compose pull && docker compose up -d --no-build
 #
 # 本地构建使用同目录 compose.override.yml（docker compose up --build）。
 
 services:
   kanban-screen:
-    image: ${KANBAN_IMAGE_PREFIX:-kanban}/kanban-screen:${KANBAN_IMAGE_TAG:-local}
+    image: ${IMAGE_PREFIX:-kanban}/kanban-screen:${IMAGE_TAG:-local}
     container_name: kanban-screen
     mem_limit: 64m
     mem_reservation: 16m

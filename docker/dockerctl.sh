@@ -24,8 +24,9 @@ show_help() {
   logs / ps / config
 
 示例:
-  # 从 ACR 拉取（tag 默认 local，与 CI 推送一致）
-  export KANBAN_IMAGE_PREFIX=registry.cn-hangzhou.aliyuncs.com/<namespace>
+  # 从 ACR 拉取
+  export IMAGE_PREFIX=registry.cn-hangzhou.aliyuncs.com/<namespace>
+  export IMAGE_TAG=local
   ./dockerctl.sh up
 EOF
 }
