@@ -45,6 +45,7 @@ yarn.lock
 .vscode/*
 !.vscode/extensions.json
 .idea
+.cursor
 .DS_Store
 Thumbs.db
 Desktop.ini
