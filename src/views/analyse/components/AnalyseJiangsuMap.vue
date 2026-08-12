@@ -8,7 +8,7 @@ import { buildJiangsuSalesMapOption } from '@/views/analyse/charts/jiangsuSalesM
 
 defineOptions({ name: 'AnalyseJiangsuMap' });
 
-const JIANGSU_GEO_URL = 'https://geo.datav.aliyun.com/areas_v3/bound/320000_full.json';
+const JIANGSU_GEO_URL = `${import.meta.env.BASE_URL}geo/320000_full.json`;
 
 const chartElement = ref<HTMLDivElement>();
 let chart: EChartsType | undefined;
@@ -26,7 +26,13 @@ async function renderChart() {
     debounceChart(chart);
   }
 
-  const geoJson = await (await fetch(JIANGSU_GEO_URL)).json();
+  const response = await fetch(JIANGSU_GEO_URL);
+  if (!response.ok) {
+    console.error('[AnalyseJiangsuMap] geo json load failed', response.status);
+    return;
+  }
+
+  const geoJson = await response.json();
   echarts.registerMap('jiangsu', geoJson);
   chart.setOption(buildJiangsuSalesMapOption(), true);
 }
