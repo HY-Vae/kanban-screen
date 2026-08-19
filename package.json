@@ -27,19 +27,19 @@
     "pinia",
     "typescript"
   ],
-  "homepage": "https://github.com/BunnyMaster/kanban-screen",
+  "homepage": "https://github.com/kiven-z/kanban-screen",
   "repository": {
     "type": "git",
-    "url": "https://github.com/BunnyMaster/kanban-screen.git"
+    "url": "https://github.com/kiven-z/kanban-screen.git"
   },
   "bugs": {
-    "url": "https://github.com/BunnyMaster/kanban-screen/issues"
+    "url": "https://github.com/kiven-z/kanban-screen/issues"
   },
   "license": "Apache-2.0",
   "author": {
-    "name": "BunnyMaster",
+    "name": "kiven-z",
     "email": "1319900154@qq.com",
-    "url": "https://github.com/BunnyMaster"
+    "url": "https://github.com/kiven-z"
   },
   "dependencies": {
     "@parcel/watcher": "^2.5.1",
