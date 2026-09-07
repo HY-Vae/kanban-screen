@@ -18,9 +18,3 @@ services:
     ports:
       - "18081:80"
     restart: unless-stopped
-    networks:
-      - kanban-network
-
-networks:
-  kanban-network:
-    external: true
