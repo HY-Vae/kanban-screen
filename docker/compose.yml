@@ -1,13 +1,11 @@
 name: kanban-screen
 
-# 运行时定义（无 build）。服务器只需本文件即可拉镜像启动。
+# 运行时定义（无 build）。本地默认 tag=local；远程部署复制 docker/.env.example 为 docker/.env 或 export：
 #
-#   export IMAGE_PREFIX=registry.cn-hangzhou.aliyuncs.com/bunny-company
-#   export IMAGE_TAG=prod-latest   # 本仓库 CI 默认也可为 local
+#   export IMAGE_PREFIX=registry.cn-hangzhou.aliyuncs.com/kiven-z-auth
+#   export IMAGE_TAG=local
 #   docker compose pull && docker compose up -d --no-build
 #
-# 本地构建使用同目录 compose.override.yml（docker compose up --build）。
-
 services:
   kanban-screen:
     image: ${IMAGE_PREFIX:-kanban}/kanban-screen:${IMAGE_TAG:-local}
@@ -16,7 +14,7 @@ services:
     mem_reservation: 16m
     environment:
       TZ: Asia/Shanghai
-      GATEWAY_HOST: ${GATEWAY_HOST:-kanban-gateway}
+      GATEWAY_HOST: kanban-gateway
     ports:
       - "18081:80"
     restart: unless-stopped
@@ -25,3 +23,4 @@ services:
 
 networks:
   kanban-network:
+    external: true
